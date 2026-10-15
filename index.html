@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Simran & Arjun – Wedding Invitation</title>
+<meta name="description" content="Simran &amp; Arjun ki shaadi mein aapko sneh-aamantran hai. 12 Dec 2026, Amritsar.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Simran &amp; Arjun ki Shaadi – 12 Dec 2026">
+<meta property="og:description" content="Dhaba ka khaana, dholki ki taal... Aana zaroor, jee! Invitation kholne ke liye tap karo.">
+<meta property="og:image" content="https://YOUR-DOMAIN/preview.jpg">
+<meta property="og:url" content="https://YOUR-DOMAIN/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#0F1B33">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Rozha+One&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com/3.4.17"></script>
+<style>
+:root{--mustard:#F2B705;--maroon:#7A1020;--teal:#1FA89A;--mint:#BFEBDD;--navy:#0F1B33;--cream:#FFF3D1;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{height:100%;scroll-behavior:smooth;scroll-padding-top:150px}
+body{margin:0;background:#070e1d;font-family:'Poppins',system-ui,sans-serif;color:var(--cream);min-height:100%}
+.display{font-family:'Rozha One',Georgia,serif}
+#app{max-width:480px;margin:0 auto;background:var(--navy);min-height:100vh;position:relative;overflow-x:hidden;box-shadow:0 0 60px #000a}
+.stripes{background:repeating-linear-gradient(45deg,var(--mustard) 0 10px,var(--maroon) 10px 20px,var(--teal) 20px 30px,var(--navy) 30px 40px);height:14px}
+.dots{background-image:radial-gradient(var(--mustard) 1.5px,transparent 1.6px);background-size:18px 18px;opacity:.18;position:absolute;inset:0;pointer-events:none}
+/* hero */
+#hero{min-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:28px 24px;position:relative;background:radial-gradient(circle at 50% 35%,#7A1020 0,#3b0a18 55%,var(--navy) 100%)}
+.plate{background:var(--mustard);color:var(--navy);border:4px solid var(--navy);outline:4px solid var(--mustard);border-radius:10px;padding:6px 18px;font-weight:700;letter-spacing:.08em;box-shadow:5px 5px 0 var(--navy)}
+#hornBtn{position:relative;width:190px;height:190px;border-radius:50%;border:0;background:var(--mustard);box-shadow:0 8px 0 #a77d00,0 0 0 6px var(--navy),0 0 0 10px var(--mustard);touch-action:none;user-select:none;-webkit-user-select:none;cursor:pointer;transition:transform .1s}
+#hornBtn:active,#hornBtn.down{transform:translateY(6px);box-shadow:0 2px 0 #a77d00,0 0 0 6px var(--navy),0 0 0 10px var(--mustard)}
+#hornBtn:focus-visible{outline:3px solid var(--mint);outline-offset:14px}
+#ring{position:absolute;inset:-18px;transform:rotate(-90deg);pointer-events:none}
+#ring circle{fill:none;stroke:var(--mint);stroke-width:5;stroke-dasharray:640;stroke-dashoffset:640;stroke-linecap:round}
+#hornBtn.down #ring circle{stroke-dashoffset:0;transition:stroke-dashoffset 1.2s linear}
+.waves path{opacity:0;stroke:var(--mint);stroke-width:4;fill:none;stroke-linecap:round}
+#hornBtn.down .waves path{animation:wave .6s infinite}
+#hornBtn.down .waves path:nth-child(2){animation-delay:.2s}
+@keyframes wave{0%{opacity:0;transform:translateX(-6px)}50%{opacity:1}100%{opacity:0;transform:translateX(8px)}}
+/* main */
+#main.locked{display:none}
+.sec{padding:44px 22px;position:relative}
+.card{border:4px solid var(--c,var(--mustard));border-radius:14px;background:var(--navy);box-shadow:6px 6px 0 var(--c,var(--mustard));position:relative;padding:16px}
+.card::before{content:"";position:absolute;inset:4px;border:2px dashed #ffffff33;border-radius:9px;pointer-events:none}
+.btn{display:inline-flex;align-items:center;gap:6px;font-weight:700;font-size:13px;padding:9px 12px;border-radius:8px;border:3px solid var(--navy);box-shadow:3px 3px 0 var(--navy);text-decoration:none;color:var(--navy);transition:transform .1s}
+.btn:active{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--navy)}
+.btn:focus-visible{outline:3px solid var(--cream);outline-offset:2px}
+/* countdown */
+.flip{width:68px;height:80px;background:var(--cream);color:var(--maroon);border:4px solid var(--navy);outline:3px solid var(--mustard);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:36px;position:relative;perspective:200px;box-shadow:0 5px 0 #0007}
+.flip::after{content:"";position:absolute;left:0;right:0;top:50%;height:3px;background:var(--navy);opacity:.55}
+.flip.go span{animation:flip .5s ease}
+@keyframes flip{0%{transform:rotateX(0)}50%{transform:rotateX(-90deg);opacity:.2}100%{transform:rotateX(0)}}
+/* drive bar */
+#drive{position:fixed;top:0;left:50%;transform:translateX(-50%);width:100%;max-width:480px;z-index:40;padding-top:env(safe-area-inset-top,0px);background:#2a2f3a;border-bottom:3px solid var(--mustard);display:none}
+#drive.on{display:block}
+#road{height:30px;position:relative;background:repeating-linear-gradient(90deg,#fff 0 16px,transparent 16px 32px) center/100% 3px no-repeat}
+#truck{position:absolute;top:1px;height:28px;width:auto;will-change:left}
+#truck.m{animation:bump .25s infinite}
+@keyframes bump{50%{margin-top:-2px}}
+#flag{position:absolute;right:6px;top:0;line-height:30px;font-size:18px}
+/* timeline */
+.tl{position:relative;padding-left:34px}
+.tl::before{content:"";position:absolute;left:11px;top:0;bottom:0;width:8px;background:#2a2f3a;border-left:2px solid #fff3;border-right:2px solid #fff3}
+.tl::after{content:"";position:absolute;left:14px;top:0;bottom:0;width:2px;background:repeating-linear-gradient(var(--mustard) 0 10px,transparent 10px 20px)}
+.stone{position:absolute;left:-34px;top:14px;width:30px;height:30px;border-radius:50% 50% 6px 6px;background:var(--c);border:3px solid var(--cream);z-index:2;display:flex;align-items:center;justify-content:center;font-size:14px}
+.ev{margin-bottom:28px;position:relative}
+.rv{opacity:0;transform:translateY(24px);transition:.6s}
+.rv.in{opacity:1;transform:none}
+#music{position:fixed;bottom:calc(18px + env(safe-area-inset-bottom,0px));right:max(18px,calc(50% - 222px));z-index:50;width:56px;height:56px;border-radius:50%;background:var(--teal);border:4px solid var(--navy);box-shadow:0 0 0 3px var(--mustard),0 6px 14px #0008;font-size:24px;cursor:pointer;display:none}
+#music.on{display:block}
+#music:focus-visible{outline:3px solid var(--cream);outline-offset:4px}
+#music.play{animation:spin 3s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.stripes{position:relative;z-index:2}
+.stripes::after{content:"";position:absolute;left:0;right:0;top:100%;height:26px;pointer-events:none;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='36' height='26'%3E%3Cpath d='M0 0h36L18 20z' fill='%237A1020'/%3E%3Cpath d='M4 0h28L18 15z' fill='%23F2B705'/%3E%3Ccircle cx='18' cy='22' r='3' fill='%231FA89A'/%3E%3C/svg%3E") repeat-x}
+#main>.stripes:last-child::after{display:none}
+#main{padding-top:150px}
+#scene{background:linear-gradient(#5a0c1a,#3b0a18);border-top:2px solid #ffffff22}
+#scene svg{display:block;width:100%;height:auto}
+.gi{display:block;width:100%;padding:9px 10px;margin:4px 0 10px;border-radius:8px;border:3px solid var(--mustard);background:var(--cream);color:var(--navy);font:600 15px Poppins,sans-serif}
+#petals{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:70}
+#petals span{position:absolute;top:-30px;animation:fall linear forwards}
+@keyframes fall{to{transform:translateY(110vh) rotate(540deg)}}
+#hero{justify-content:flex-start;padding:22px 18px 34px;background:linear-gradient(180deg,rgba(15,27,51,.35) 0,rgba(15,27,51,0) 30%,rgba(15,27,51,0) 62%,rgba(15,27,51,.82) 100%),url("img/hero.webp") center/cover no-repeat}
+.htop{background:rgba(15,27,51,.8);border:3px solid var(--mustard);border-radius:14px;padding:14px 16px;box-shadow:5px 5px 0 #000a;position:relative}
+#hornBtn{margin-top:auto}
+#hero .text-xs,#hornMsg{text-shadow:0 2px 6px #000}
+.stripes::after{height:62px;background:url("img/jh.webp") left top/auto 62px repeat-x}
+.stripes+.sec{padding-top:84px}
+#main [style*="background:var(--maroon)"]{background-image:linear-gradient(rgba(122,16,32,.88),rgba(122,16,32,.88)),url("img/tile.webp")!important;background-size:auto,320px!important}
+.stk{position:absolute;right:8px;top:-26px;width:84px;transform:rotate(5deg);filter:drop-shadow(2px 3px 0 #000a);z-index:3}
+.frame{width:min(100%,370px);aspect-ratio:1.360;margin:0 auto;background:url("img/frame.webp") center/100% 100% no-repeat;display:flex;align-items:center;justify-content:center}
+@media (prefers-reduced-motion:reduce){#petals{display:none}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<div id="app">
+
+<!-- drive bar -->
+<div id="drive" aria-hidden="true"><div id="road"><img id="truck" alt="" src="img/car.webp"><span id="flag">🏁</span></div>
+<div id="scene"><svg viewBox="0 0 480 112" aria-hidden="true"><defs><linearGradient id="gdBlue" x1="0" x2="1"><stop offset="0" stop-color="#3F5FD0"/><stop offset="1" stop-color="#1B2F7E"/></linearGradient><linearGradient id="gdCream" x1="0" x2="1"><stop offset="0" stop-color="#FFF8E3"/><stop offset="1" stop-color="#E4D2A4"/></linearGradient><linearGradient id="gdRed" x1="0" x2="1"><stop offset="0" stop-color="#EC4040"/><stop offset="1" stop-color="#9E131E"/></linearGradient><linearGradient id="gdGold" x1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFE08A"/><stop offset="1" stop-color="#CF9416"/></linearGradient><radialGradient id="gdSkin" cx=".35" cy=".3" r=".8"><stop offset="0" stop-color="#F8D3AB"/><stop offset="1" stop-color="#D4915F"/></radialGradient>
+<g id="mala"><ellipse rx="15" ry="9" fill="none" stroke="#E5293E" stroke-width="5" stroke-dasharray="2.5 6.5" stroke-linecap="round"/><ellipse rx="15" ry="9" fill="none" stroke="#fff" stroke-width="5" stroke-dasharray="2.5 6.5" stroke-dashoffset="-3" stroke-linecap="round"/><ellipse rx="15" ry="9" fill="none" stroke="#FFC933" stroke-width="5" stroke-dasharray="2.5 6.5" stroke-dashoffset="-6" stroke-linecap="round"/><circle cy="10" r="3.2" fill="#E5293E"/></g></defs>
+<path d="M0 109h480" stroke="#F2B705" stroke-width="3"/>
+<g id="gm"><ellipse cy="110" rx="24" ry="3" fill="#000" opacity=".3"/><path d="M-17 62q-7 24-5 50h9V66z" fill="url(#gdCream)"/><path d="M-17 112V72q0-19 17-19t17 19v40z" fill="url(#gdBlue)" stroke="url(#gdGold)" stroke-width="1.2"/><path d="M4 58l9 54h-9L-1 58z" fill="url(#gdCream)" stroke="url(#gdGold)" stroke-width="1.5"/><circle cx="-4" cy="72" r="1.6" fill="url(#gdGold)"/><circle cx="-4" cy="84" r="1.6" fill="url(#gdGold)"/><circle cx="-4" cy="96" r="1.6" fill="url(#gdGold)"/><ellipse cx="-10" cy="84" rx="3" ry="16" fill="#fff" opacity=".12"/><rect x="-4" y="50" width="8" height="8" fill="url(#gdSkin)"/><circle cy="42" r="13" fill="url(#gdSkin)"/><path d="M-8 46q8 12 16 0q0 7-8 8q-8-1-8-8z" fill="#3b2418" opacity=".5"/><path d="M-6 41q2-2 4 0M3 41q2-2 4 0" stroke="#3b2418" stroke-width="1.3" fill="none"/><path d="M-2 49q4 3 8-1" stroke="#fff" stroke-width="1.2" fill="none"/><path d="M-15 38q-2-26 15-26t16 26q-8-9-16-8t-15 8z" fill="url(#gdCream)" stroke="url(#gdGold)"/><path d="M-12 26q12-8 26 0M-14 32q14-7 29 0" stroke="#D9C79A" fill="none"/><path d="M-3 13l3-9 8 4-3 7z" fill="url(#gdCream)" stroke="url(#gdGold)"/><circle cx="9" cy="28" r="2.4" fill="#C9283E" stroke="#E0A21C"/><rect x="9" y="33" width="1.4" height="3.5" fill="#C9283E"/><path d="M10 66q14 3 17 13" stroke="#2A44A0" stroke-width="7" fill="none" stroke-linecap="round"/><path d="M22 73l5 5" stroke="#E0A21C" stroke-width="2.5"/><circle cx="27" cy="79" r="4" fill="url(#gdSkin)"/></g>
+<g id="bd"><ellipse cy="110" rx="26" ry="3" fill="#000" opacity=".3"/><path d="M-18 60q-13 24-11 52h13z" fill="#B8202C" stroke="url(#gdGold)"/><path d="M-22 112L-14 76h28l8 36z" fill="url(#gdRed)"/><path d="M-22 107h44" stroke="#E0A21C" stroke-width="3"/><circle cx="-8" cy="92" r="1.3" fill="#FFD36B"/><circle cx="6" cy="90" r="1.3" fill="#FFD36B"/><circle cx="-2" cy="100" r="1.3" fill="#FFD36B"/><circle cx="12" cy="100" r="1.3" fill="#FFD36B"/><rect x="-13" y="74" width="26" height="4" fill="url(#gdSkin)"/><path d="M-13 74V63q13-9 26 0v11z" fill="#D12A33" stroke="#E0A21C"/><rect x="-4" y="50" width="8" height="8" fill="url(#gdSkin)"/><path d="M-12 36q-10 16-7 40q2 12-2 26" stroke="#3a1d12" stroke-width="7" fill="none" stroke-linecap="round"/><circle cy="42" r="12" fill="url(#gdSkin)"/><path d="M-13 40q-2-24 13-24t13 24q-4-10-13-11t-13 11z" fill="#3a1d12"/><circle cx="-11" cy="26" r="2.6" fill="#F4A6C4"/><circle cx="-8" cy="21" r="2.2" fill="#F4A6C4"/><path d="M0 20v7" stroke="#E0A21C"/><circle cy="29" r="1.8" fill="#E0A21C"/><circle cx="-10" cy="47" r="1.8" fill="#FFD36B"/><circle cx="-10" cy="51" r="2.2" fill="#E0A21C"/><path d="M-5 42q2-2 4 0M3 42q2-2 4 0" stroke="#3a1d12" stroke-width="1.3" fill="none"/><path d="M-1 49q3 2 6-1" stroke="#C9283E" stroke-width="1.6" fill="none"/><path d="M8 67q14 2 17 12" stroke="#E0A877" stroke-width="6" fill="none" stroke-linecap="round"/><path d="M21 74l4 4" stroke="#D12A33" stroke-width="4"/><path d="M19 72l4 4" stroke="#FFD36B" stroke-width="2"/><circle cx="27" cy="79" r="4" fill="url(#gdSkin)"/></g>
+<image id="cp" x="-42" y="2" width="84" height="110" preserveAspectRatio="xMidYMax meet" opacity="0" transform="translate(240,0)"/><use id="g1" href="#mala"/><use id="g2" href="#mala"/></svg></div></div>
+
+<section id="gen" class="p-5" hidden>
+ <h2 class="display text-3xl" style="color:var(--mustard)">Link Generator</h2>
+ <p class="text-xs opacity-80 mb-4">Naam daalo, har mehmaan ka link aur WhatsApp message ban jayega.</p>
+ <label class="text-xs font-bold" for="gU">Invitation ka link (domain)</label><input id="gU" class="gi">
+ <div class="flex gap-2"><div class="flex-1"><label class="text-xs font-bold" for="gB">Dulhan</label><input id="gB" class="gi"></div><div class="flex-1"><label class="text-xs font-bold" for="gG">Dulha</label><input id="gG" class="gi"></div></div>
+ <label class="text-xs font-bold" for="gL">Mehmaan (har line mein ek naam)</label><textarea id="gL" rows="6" class="gi"></textarea>
+ <button id="gGo" class="btn" style="background:var(--mustard)">Links banao</button>
+ <div id="gOut" class="mt-4 space-y-3"></div>
+</section>
+<!-- HERO -->
+<header id="hero">
+  <div class="dots"></div>
+  <div class="htop"><div class="plate text-xs mb-3 relative">ਸ਼ਾਦੀ ਦਾ ਸੱਦਾ • WEDDING INVITE</div>
+  <p id="guest" class="display text-2xl mb-3 relative" style="color:var(--mint)" hidden></p>
+  <h1 class="display text-5xl leading-tight relative" style="color:var(--mustard);text-shadow:3px 3px 0 var(--navy)"><span id="nB">Simran</span><br><span class="text-3xl" style="color:var(--mint)">weds</span><br><span id="nG">Arjun</span></h1>
+  <p class="mt-3 text-sm relative" style="color:var(--cream)">Dhaba ka khaana, dholki ki taal,<br>aur shaadi ka dhamaal. Chalo, chalein!</p></div>
+
+  <button id="hornBtn" aria-label="Press and hold the horn to open the invitation">
+    <svg id="ring" viewBox="0 0 220 220"><circle cx="110" cy="110" r="102"/></svg>
+    <svg viewBox="0 0 100 100" width="130" height="130" style="display:block;margin:auto">
+      <path d="M12 38h14l30-18v60L26 62H12z" fill="#7A1020" stroke="#0F1B33" stroke-width="4" stroke-linejoin="round"/>
+      <rect x="56" y="14" width="10" height="72" rx="4" fill="#1FA89A" stroke="#0F1B33" stroke-width="4"/>
+      <circle cx="30" cy="50" r="5" fill="#F2B705"/>
+      <g class="waves"><path d="M74 36q10 14 0 28"/><path d="M84 28q16 22 0 44"/></g>
+    </svg>
+  </button>
+  <p id="hornMsg" class="mt-8 text-lg font-bold relative" style="color:var(--mustard)">Press &amp; hold the horn 📯</p>
+  <p class="text-xs mt-1 opacity-70 relative">Honk to open the invitation (sound on)</p>
+</header>
+
+<main id="main" class="locked">
+  <div class="stripes"></div>
+
+  <!-- Invite -->
+  <section class="sec text-center" style="background:var(--maroon)">
+    <div class="dots"></div>
+    <div class="relative">
+      <p class="text-sm" style="color:var(--mint)">With the blessings of Waheguru and our families</p>
+      <p class="display text-3xl mt-3" style="color:var(--mustard)">Sardar Gurmeet Singh &amp; Smt. Harpreet Kaur</p>
+      <p class="my-2 text-sm">request your presence at the wedding of their daughter</p>
+      <p id="iB" class="display text-4xl" style="color:var(--cream)">Simran</p>
+      <p class="text-sm">with</p>
+      <p id="iG" class="display text-4xl" style="color:var(--cream)">Arjun</p>
+      <p class="mt-2 text-sm">son of Sh. Balwinder Singh &amp; Smt. Jasleen Kaur</p>
+      <div class="plate inline-block mt-5 text-lg">12 DEC 2026 • AMRITSAR</div>
+    </div>
+  </section>
+
+  <!-- Countdown -->
+  <section class="sec text-center" style="background:linear-gradient(rgba(15,27,51,.62),rgba(15,27,51,.78)),url('img/truck5.webp') center 35%/cover;color:var(--cream)">
+    <h2 class="display text-3xl">Gaadi chalne mein...</h2>
+    <p class="text-sm font-semibold mb-5">Countdown to Anand Karaj, 12 Dec 2026, 11:00 AM</p>
+    <div class="flex justify-center gap-2" id="cd" role="timer" aria-live="off">
+      <div><div class="flip display" data-k="d"><span>00</span></div><p class="text-xs font-bold mt-2">Days</p></div>
+      <div><div class="flip display" data-k="h"><span>00</span></div><p class="text-xs font-bold mt-2">Hours</p></div>
+      <div><div class="flip display" data-k="m"><span>00</span></div><p class="text-xs font-bold mt-2">Minutes</p></div>
+      <div><div class="flip display" data-k="s"><span>00</span></div><p class="text-xs font-bold mt-2">Seconds</p></div>
+    </div>
+  </section>
+  <div class="stripes"></div>
+
+  <!-- Roadmap -->
+  <section class="sec">
+    <h2 class="display text-3xl text-center" style="color:var(--mustard)">Shaadi Highway Roadmap</h2>
+    <p class="text-center text-sm mb-8 opacity-80">Five stops. Zero brakes.</p>
+    <div class="tl" id="events"></div>
+  </section>
+
+  <section class="sec" style="background:var(--teal);color:var(--navy)">
+ <h2 class="display text-3xl text-center">Aaoge na?</h2>
+ <p class="text-sm text-center font-semibold mb-5">Jawab seedha WhatsApp pe bhejo</p>
+ <div class="card" style="--c:var(--mustard);background:var(--cream);color:var(--navy)">
+  <label class="text-xs font-bold" for="rName">Aapka naam</label><input id="rName" class="gi" maxlength="40" autocomplete="name">
+  <p class="text-xs font-bold">Kitne log aayenge?</p>
+  <div class="flex items-center justify-center gap-5 my-2"><button id="rM" class="btn" style="background:var(--mint)" aria-label="Kam karo">−</button><span id="rN" class="display text-3xl">1</span><button id="rP" class="btn" style="background:var(--mint)" aria-label="Zyada karo">+</button></div>
+  <div class="flex flex-wrap gap-2 mt-3"><a id="rY" class="btn" style="background:var(--mustard)" data-t="rsvp_yes" target="_blank" rel="noopener">✅ Aa raha hoon</a><a id="rNo" class="btn" style="background:#f3c9c9" data-t="rsvp_no" target="_blank" rel="noopener">🙏 Nahi aa paunga</a></div>
+ </div>
+</section>
+<section class="sec text-center" style="background:var(--maroon)">
+ <h2 class="display text-3xl" style="color:var(--mustard)">Venue ka QR</h2>
+ <p class="text-sm mb-4">Scan karo, seedha Google Maps khulega</p>
+ <div id="qrTabs" class="flex flex-wrap justify-center gap-2 mb-4"></div>
+ <div class="frame"><div class="p-2 rounded" style="background:#FFF3D1"><div id="qr"></div></div></div>
+ <p id="qrCap" class="text-sm mt-3 font-semibold"></p>
+</section>
+<footer class="text-center pb-24 pt-8 px-6" style="background:var(--maroon)">
+    <p class="display text-2xl" style="color:var(--mustard)"><span id="fG">Aana zaroor, jee!</span></p>
+    <p class="text-sm mt-2">Your presence is the biggest shagun.<br>Dhaba on the house. 🍛</p>
+    <p class="text-xs mt-4 opacity-70">Hasna, Naachna &amp; Khaana – <span id="fN">Simran &amp; Arjun</span>, 2026</p>
+  </footer>
+  <div class="stripes"></div>
+</main>
+
+<button id="music" aria-label="Play or pause background music" title="Music">🎶</button>
+<div id="petals" aria-hidden="true"></div>
+</div>
+
+<script id="imgdata">window.IMGS={g:'img/groom.webp',b:'img/bride.webp',c:'img/couple.webp',s:['img/s0.webp','img/s1.webp','img/s2.webp','img/s3.webp','img/s4.webp']};</script>
+<script>
+/* ===== EDIT ME ===== */
+const RSVP_NUMBER='919999999999'; // RSVP WhatsApp number: country code ke saath, bina +
+const FACE='body'; // 'body' = dono ka shareer aur mala ek doosre ki taraf | 'eyes' = dono ki nazar ek doosre par
+const GA_ID=''; // optional Google Analytics 4 id, jaise 'G-XXXXXXXXXX'
+const GROOM_IMG=(window.IMGS||{}).g||'',BRIDE_IMG=(window.IMGS||{}).b||''; // 3D photos neeche imgdata script mein hain. Apni file lagani ho to 'groom.png' / 'bride.png' likho (dono RIGHT dekhte hue, dulhan ko code khud ulta karta hai)
+const WEDDING = new Date('2026-12-12T11:00:00+05:30');
+const EVENTS = [
+ {icon:'🌸',c:'#F2B705',name:'Roka & Chunni',date:'Wed, 9 Dec 2026',time:'11:00 AM',s:'20261209T110000',e:'20261209T140000',venue:'Gurdwara Sahib Hall, Lawrence Road, Amritsar',note:'Blessings, sweets and the first dhol of the season.'},
+ {icon:'🌿',c:'#1FA89A',name:'Mehndi',date:'Thu, 10 Dec 2026',time:'2:00 PM',s:'20261210T140000',e:'20261210T180000',venue:'Haveli Lawns, Mall Road, Amritsar',note:'Mehndi, chaat and gossip. Wear yellow and green.'},
+ {icon:'🥁',c:'#C9283E',name:'Sangeet & Jago',date:'Fri, 11 Dec 2026',time:'7:00 PM',s:'20261211T190000',e:'20261212T000000',venue:'Truck Art Farmhouse, GT Road, Amritsar',note:'Bhangra battle, boliyan and the traditional Jago night.'},
+ {icon:'🙏',c:'#F2B705',name:'Anand Karaj',date:'Sat, 12 Dec 2026',time:'11:00 AM',s:'20261212T110000',e:'20261212T140000',venue:'Gurdwara Sri Guru Singh Sabha, Amritsar',note:'The sacred ceremony. Head covered, heart open. Langar follows.'},
+ {icon:'🎉',c:'#1FA89A',name:'Reception',date:'Sat, 12 Dec 2026',time:'7:30 PM',s:'20261212T193000',e:'20261212T230000',venue:'The Royal Dhaba Banquet, Ranjit Avenue, Amritsar',note:'Dinner, dance floor and a dhaba-style food street.'}
+];
+/* =================== */
+
+const $=s=>document.querySelector(s);
+const enc=encodeURIComponent;
+/* ---- personalise from link: ?bride=Simran&groom=Arjun&guest=Rahul%20Sharma ---- */
+const Q=new URLSearchParams(location.search);
+const cl=s=>(s||'').trim().slice(0,40);
+const B=cl(Q.get('bride'))||'Simran',G=cl(Q.get('groom'))||'Arjun',GUEST=cl(Q.get('guest'));
+$('#nB').textContent=$('#iB').textContent=B;
+$('#nG').textContent=$('#iG').textContent=G;
+$('#fN').textContent=B+' & '+G;
+function track(n,p){try{window.gtag&&gtag('event',n,p||{})}catch(e){}}
+if(GA_ID){const s=document.createElement('script');s.async=1;s.src='https://www.googletagmanager.com/gtag/js?id='+GA_ID;document.head.appendChild(s);window.dataLayer=window.dataLayer||[];window.gtag=function(){dataLayer.push(arguments)};gtag('js',new Date());gtag('config',GA_ID);}
+document.addEventListener('click',e=>{const a=e.target.closest('[data-t]');if(a)track(a.dataset.t,{guest:GUEST||'direct'})});
+function rain(n){const c=$('#petals');for(let i=0;i<n;i++){const s=document.createElement('span');s.textContent=['🌼','🌸','🏵️','🌺'][i%4];s.style.cssText=`left:${Math.random()*100}%;font-size:${14+Math.random()*16}px;animation-duration:${3+Math.random()*3}s;animation-delay:${Math.random()*1.2}s`;c.appendChild(s);setTimeout(()=>s.remove(),7500);}}
+document.title=B+' & '+G+' – Wedding Invitation';
+if(GUEST){const g=$('#guest');g.textContent='Sat Sri Akal, '+GUEST+' ji! 🙏';g.hidden=false;$('#fG').textContent='Aana zaroor, '+GUEST+' ji!';}
+let ac,master,noiseBuf;
+function ctx(){
+  if(!ac){ac=new (window.AudioContext||window.webkitAudioContext)();master=ac.createGain();master.gain.value=.6;master.connect(ac.destination);
+    noiseBuf=ac.createBuffer(1,ac.sampleRate*.2,ac.sampleRate);const d=noiseBuf.getChannelData(0);for(let i=0;i<d.length;i++)d[i]=Math.random()*2-1;}
+  if(ac.state==='suspended')ac.resume();return ac;
+}
+
+/* ---- horn ---- */
+let hornStop=null;
+function startHorn(){
+  ctx();const t=ac.currentTime,g=ac.createGain(),lp=ac.createBiquadFilter();
+  lp.type='lowpass';lp.frequency.value=1400;g.gain.setValueAtTime(0,t);g.gain.linearRampToValueAtTime(.45,t+.04);
+  const os=[349.23,440,523.25].map((f,i)=>{const o=ac.createOscillator();o.type=i==2?'square':'sawtooth';o.frequency.value=f;o.detune.value=i*4;o.connect(lp);o.start(t);return o});
+  lp.connect(g);g.connect(master);
+  return()=>{const n=ac.currentTime;g.gain.cancelScheduledValues(n);g.gain.setValueAtTime(g.gain.value,n);g.gain.linearRampToValueAtTime(0,n+.12);os.forEach(o=>o.stop(n+.15));};
+}
+let unlocked=false,holdT=null;
+const hb=$('#hornBtn');
+function down(e){if(unlocked||hornStop)return;e.preventDefault();hb.classList.add('down');hornStop=startHorn();holdT=setTimeout(release,1250);$('#hornMsg').textContent='Peep peep! Keep holding... 🚛';}
+function release(){
+  if(!hornStop)return;clearTimeout(holdT);hornStop();hornStop=null;hb.classList.remove('down');
+  unlocked=true;$('#hornMsg').textContent='Gaadi chal padi! 🚚💨';rain(34);track('invite_open',{guest:GUEST||'direct'});
+  $('#main').classList.remove('locked');$('#drive').classList.add('on');$('#music').classList.add('on');
+  setTimeout(()=>{$('#main').scrollIntoView({behavior:'smooth'});startMusic();},350);
+  onScroll();
+}
+hb.addEventListener('pointerdown',down);
+['pointerup','pointercancel'].forEach(ev=>hb.addEventListener(ev,release));
+hb.addEventListener('keydown',e=>{if(e.key===' '||e.key==='Enter')down(e)});
+hb.addEventListener('keyup',e=>{if(e.key===' '||e.key==='Enter')release()});
+
+/* ---- bhangra loop (synthesized) ---- */
+let playing=false,step=0,nextT=0,tmr=null;const EIGHTH=60/112/2;
+const MEL=[293.66,0,349.23,293.66,0,440,392,0,349.23,0,293.66,349.23,0,392,329.63,0];
+function tone(f,t,d,type,v,f2){const o=ac.createOscillator(),g=ac.createGain();o.type=type;o.frequency.setValueAtTime(f,t);if(f2)o.frequency.exponentialRampToValueAtTime(f2,t+d);g.gain.setValueAtTime(v,t);g.gain.exponentialRampToValueAtTime(.001,t+d);o.connect(g);g.connect(master);o.start(t);o.stop(t+d+.02);}
+function tak(t,v){const s=ac.createBufferSource(),f=ac.createBiquadFilter(),g=ac.createGain();s.buffer=noiseBuf;f.type='bandpass';f.frequency.value=3200;f.Q.value=1.2;g.gain.setValueAtTime(v,t);g.gain.exponentialRampToValueAtTime(.001,t+.09);s.connect(f);f.connect(g);g.connect(master);s.start(t);}
+function sched(i,t){
+  const k=i%16;
+  if([0,3,8,11].includes(k))tone(150,t,.28,'sine',.9,45);
+  if([2,4,6,10,12,14].includes(k))tak(t,.35);
+  if(k%2==0)tone(1800,t,.03,'square',.03);
+  const m=MEL[k];if(m){tone(m,t,.3,'triangle',.22);tone(m*2,t,.12,'sawtooth',.05);}
+  if(k==0)tone(73.4,t,EIGHTH*8,'sine',.25);
+  if(k==8)tone(87.3,t,EIGHTH*8,'sine',.25);
+}
+function pump(){while(nextT<ac.currentTime+.25){sched(step,nextT);nextT+=EIGHTH;step++;}}
+function startMusic(){ctx();if(playing)return;playing=true;nextT=ac.currentTime+.05;pump();tmr=setInterval(pump,60);$('#music').classList.add('play');$('#music').textContent='🎶';}
+function stopMusic(){playing=false;clearInterval(tmr);$('#music').classList.remove('play');$('#music').textContent='🔇';}
+$('#music').addEventListener('click',()=>playing?stopMusic():startMusic());
+
+/* ---- countdown ---- */
+const cells={};document.querySelectorAll('.flip').forEach(el=>cells[el.dataset.k]=el);
+function setCell(k,v){const el=cells[k],sp=el.firstElementChild,s=String(v).padStart(2,'0');if(sp.textContent!==s){sp.textContent=s;el.classList.remove('go');void el.offsetWidth;el.classList.add('go');}}
+function tick(){
+  let d=Math.max(0,WEDDING-Date.now());const S=Math.floor(d/1000);
+  setCell('d',Math.floor(S/86400));setCell('h',Math.floor(S%86400/3600));setCell('m',Math.floor(S%3600/60));setCell('s',S%60);
+}
+tick();setInterval(tick,1000);
+
+/* ---- varmala scene ---- */
+const gm=$('#gm'),bd=$('#bd'),g1=$('#g1'),g2=$('#g2');let rained=false;
+const IMG=!!(GROOM_IMG||BRIDE_IMG),E=IMG?[206,274]:[200,280],BODY=FACE==='body',GS=IMG&&BODY?-1:1,BS=IMG&&BODY?1:-1;
+$('#cp').setAttribute('href',(window.IMGS||{}).c||'');
+[[gm,GROOM_IMG],[bd,BRIDE_IMG]].forEach(([g,u])=>{if(u)g.innerHTML=`<image href="${u}" x="-45" y="2" width="90" height="110" preserveAspectRatio="xMidYMax meet"/>`;});
+const c01=v=>Math.min(1,Math.max(0,v)),lp=(a,b,t)=>a+(b-a)*t;
+function scene(p){
+ const a=c01(p/.88),q=c01((p-.9)/.08),gx=lp(36,E[0],a),bx=lp(444,E[1],a);
+ gm.setAttribute('transform',`translate(${gx},0) scale(${GS},1) rotate(${GS*q*5} 0 112)`);
+ bd.setAttribute('transform',`translate(${bx},0) scale(${BS},1) rotate(${-BS*q*5} 0 112)`);
+ g1.setAttribute('transform',`translate(${lp(gx+27,bx,q)},${lp(79,62,q)}) rotate(${lp(70,0,q)})`);
+ g2.setAttribute('transform',`translate(${lp(bx-27,gx,q)},${lp(79,62,q)}) rotate(${lp(-70,0,q)})`);
+ if(IMG){const f=c01((q-.3)/.4);gm.style.opacity=bd.style.opacity=1-f;$('#cp').style.opacity=f;g1.style.display=g2.style.display='none';}
+ if(q>=1&&!rained){rained=true;rain(60);}if(q<.5)rained=false;
+}
+scene(0);
+/* ---- RSVP ---- */
+let pax=1;
+function upd(){const n=$('#rName').value.trim()||'Mehmaan';$('#rN').textContent=pax;const w=t=>`https://wa.me/${RSVP_NUMBER}?text=${enc(t)}`;
+ $('#rY').href=w(`Sat Sri Akal! 🙏 ${n} ji, ${B} & ${G} ki shaadi mein aa rahe hain. Total log: ${pax} 🎉`);
+ $('#rNo').href=w(`Sat Sri Akal! 🙏 ${n} ji, aa nahi paayenge, par ${B} & ${G} ko bahut pyaar aur shubhkamnayein.`);}
+$('#rName').value=GUEST;$('#rName').oninput=upd;
+$('#rM').onclick=()=>{pax=Math.max(1,pax-1);upd()};$('#rP').onclick=()=>{pax=Math.min(10,pax+1);upd()};upd();
+/* ---- venue QR ---- */
+let qr;const qt=$('#qrTabs');
+function showQR(i){const e=EVENTS[i],u='https://www.google.com/maps/search/?api=1&query='+enc(e.venue);
+ if(window.QRCode){if(!qr)qr=new QRCode($('#qr'),{text:u,width:128,height:128,colorDark:'#0F1B33',colorLight:'#FFF3D1'});else{qr.clear();qr.makeCode(u);}}
+ $('#qrCap').textContent=e.name+': '+e.venue;[...qt.children].forEach((b,j)=>b.style.opacity=j==i?1:.55);}
+EVENTS.forEach((e,i)=>{const b=document.createElement('button');b.className='btn';b.style.background='var(--mint)';b.textContent=e.icon+' '+e.name;b.onclick=()=>showQR(i);qt.appendChild(b);});
+showQR(3);
+/* ---- link generator: open page with ?make=1 ---- */
+if(Q.has('make')){$('#hero').style.display='none';$('#gen').hidden=false;$('#gU').value=location.href.split('?')[0];
+$('#gGo').onclick=()=>{const base=$('#gU').value.trim()||location.href.split('?')[0],b=$('#gB').value.trim()||B,g=$('#gG').value.trim()||G,out=$('#gOut');out.innerHTML='';
+ $('#gL').value.split(/\n/).map(s=>s.trim()).filter(Boolean).forEach(n=>{
+  const url=base+'?bride='+enc(b)+'&groom='+enc(g)+'&guest='+enc(n);
+  const msg=`Sat Sri Akal ${n} ji! 🙏
+${b} & ${g} ki shaadi mein aapko sneh-aamantran hai.
+Invitation yahan dekhein 👇
+${url}`;
+  const d=document.createElement('div');d.className='card';d.style.setProperty('--c','var(--teal)');
+  const t=document.createElement('p');t.className='font-bold';t.textContent=n;
+  const u=document.createElement('p');u.className='text-xs break-all opacity-70 my-2';u.textContent=url;
+  const w=document.createElement('a');w.className='btn';w.style.background='var(--mint)';w.target='_blank';w.rel='noopener';w.href='https://wa.me/?text='+enc(msg);w.textContent='💬 WhatsApp';
+  const c=document.createElement('button');c.className='btn';c.style.cssText='background:var(--mustard);margin-left:8px';c.textContent='📋 Copy link';
+  c.onclick=()=>{navigator.clipboard.writeText(url).then(()=>c.textContent='✅ Copied',()=>c.textContent='Upar se link copy karo');};
+  d.append(t,u,w,c);out.appendChild(d);});};}
+/* ---- scroll to drive ---- */
+const truck=$('#truck');let st;
+function onScroll(){
+  const max=document.documentElement.scrollHeight-innerHeight,p=max>0?Math.min(1,Math.max(0,scrollY/max)):0;
+  const road=$('#road').clientWidth;truck.style.left=(p*(road-64)+4)+'px';
+  truck.classList.add('m');clearTimeout(st);st=setTimeout(()=>truck.classList.remove('m'),150);scene(p);
+}
+addEventListener('scroll',onScroll,{passive:true});addEventListener('resize',onScroll);
+
+/* ---- events ---- */
+$('#events').innerHTML=EVENTS.map((e,i)=>{
+  const cal=`https://calendar.google.com/calendar/render?action=TEMPLATE&text=${enc(e.name+' – '+B+' & '+G)}&dates=${e.s}/${e.e}&ctz=Asia/Kolkata&details=${enc(e.note)}&location=${enc(e.venue)}`;
+  const map=`https://www.google.com/maps/search/?api=1&query=${enc(e.venue)}`;
+  return `<article class="ev rv" style="--c:${e.c}"><div class="stone" aria-hidden="true">${e.icon}</div>
+  <div class="card"><img class="stk" alt="" src="${(window.IMGS||{}).s?.[i]||''}"><h3 class="display text-2xl" style="color:${e.c};padding-right:72px">${e.name}</h3>
+  <p class="text-sm font-semibold mt-1">📅 ${e.date} &nbsp; 🕒 ${e.time}</p>
+  <p class="text-sm mt-1">📍 ${e.venue}</p>
+  <p class="text-xs mt-2 opacity-80">${e.note}</p>
+  <div class="flex flex-wrap gap-2 mt-4">
+   <a class="btn" style="background:var(--mustard)" href="${cal}" data-t="add_calendar" target="_blank" rel="noopener">📆 Add to Google Calendar</a>
+   <a class="btn" style="background:var(--mint)" href="${map}" data-t="open_maps" target="_blank" rel="noopener">🗺️ Google Maps</a>
+  </div></div></article>`;
+}).join('');
+const io=new IntersectionObserver(es=>es.forEach(x=>{if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target)}}),{threshold:.15});
+document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
