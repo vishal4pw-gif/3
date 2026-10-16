@@ -65,7 +65,7 @@ body{margin:0;background:#070e1d;font-family:'Poppins',system-ui,sans-serif;colo
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
 </style>
 </head>
-<body>
+<body><audio id="bgMusic" src="Liquid Time - Aakash Gandhi.mp3" preload="auto" loop></audio>
 <div id="app">
 
 <!-- drive bar -->
@@ -185,21 +185,7 @@ hb.addEventListener('pointerdown',down);
 hb.addEventListener('keydown',e=>{if(e.key===' '||e.key==='Enter')down(e)});
 hb.addEventListener('keyup',e=>{if(e.key===' '||e.key==='Enter')release()});
 
-/* ---- bhangra loop (synthesized) ---- */
-let playing=false,step=0,nextT=0,tmr=null;const EIGHTH=60/112/2;
-const MEL=[293.66,0,349.23,293.66,0,440,392,0,349.23,0,293.66,349.23,0,392,329.63,0];
-function tone(f,t,d,type,v,f2){const o=ac.createOscillator(),g=ac.createGain();o.type=type;o.frequency.setValueAtTime(f,t);if(f2)o.frequency.exponentialRampToValueAtTime(f2,t+d);g.gain.setValueAtTime(v,t);g.gain.exponentialRampToValueAtTime(.001,t+d);o.connect(g);g.connect(master);o.start(t);o.stop(t+d+.02);}
-function tak(t,v){const s=ac.createBufferSource(),f=ac.createBiquadFilter(),g=ac.createGain();s.buffer=noiseBuf;f.type='bandpass';f.frequency.value=3200;f.Q.value=1.2;g.gain.setValueAtTime(v,t);g.gain.exponentialRampToValueAtTime(.001,t+.09);s.connect(f);f.connect(g);g.connect(master);s.start(t);}
-function sched(i,t){
-  const k=i%16;
-  if([0,3,8,11].includes(k))tone(150,t,.28,'sine',.9,45);
-  if([2,4,6,10,12,14].includes(k))tak(t,.35);
-  if(k%2==0)tone(1800,t,.03,'square',.03);
-  const m=MEL[k];if(m){tone(m,t,.3,'triangle',.22);tone(m*2,t,.12,'sawtooth',.05);}
-  if(k==0)tone(73.4,t,EIGHTH*8,'sine',.25);
-  if(k==8)tone(87.3,t,EIGHTH*8,'sine',.25);
-}
-function pump(){while(nextT<ac.currentTime+.25){sched(step,nextT);nextT+=EIGHTH;step++;}}
+
 function startMusic(){ctx();if(playing)return;playing=true;nextT=ac.currentTime+.05;pump();tmr=setInterval(pump,60);$('#music').classList.add('play');}
 function stopMusic(){playing=false;clearInterval(tmr);$('#music').classList.remove('play');}
 $('#music').addEventListener('click',()=>playing?stopMusic():startMusic());
